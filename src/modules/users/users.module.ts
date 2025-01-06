@@ -11,10 +11,11 @@ import {
   UserRepositoryProvider,
 } from './user-provider';
 import { AddressRepository } from '../address/repository/address.repository';
+import { AddressModule } from '../address/address.module';
 
 @Module({
-  imports: [],
+  imports: [AddressModule],
   controllers: [UsersController],
-  providers: [UsersService, UserRepository, AddressRepositoryProvider],
+  providers: [UsersService, UserRepository],
 })
 export class UsersModule {}

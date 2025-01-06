@@ -5,10 +5,11 @@ import { AddressRepository } from './repository/address.repository';
 import { AddressEntity } from 'src/database/entities/address.entity';
 import { Repository } from 'typeorm';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AddressRepositoryProvider } from '../users/user-provider';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AddressEntity], 'shared')],
   controllers: [AddressController],
-  providers: [AddressService, AddressRepository],
+  providers: [AddressService, AddressRepository, AddressRepositoryProvider],
+  exports: [AddressService, AddressRepository],
 })
 export class AddressModule {}

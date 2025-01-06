@@ -8,10 +8,7 @@ import { BaseCustomRepository } from 'src/database/repository/base-custom.reposi
 
 @Injectable()
 export class AddressService {
-  constructor(
-    @InjectRepository(AddressEntity, 'shared')
-    private addressRepository: BaseCustomRepository<AddressEntity>,
-  ) {}
+  constructor(private addressRepository: AddressRepository) {}
   create(createAddressDto: CreateAddressDto) {
     return 'This action adds a new address';
   }

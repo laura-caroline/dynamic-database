@@ -8,10 +8,12 @@ import { UsersModule } from './modules/users/users.module';
 import { TenantMiddleware } from './middleware/tenant-middleware';
 import { TenantSaveIdentifierDatabaseModule } from './middleware/provider/tenant-save-identifier-database.module';
 import { TenantSaveIdentifierDatabaseService } from './middleware/provider/tenant-save-identifier-database.service';
+import { SharedModulesDatabase } from './modules/users/user-provider';
 
 @Module({
   imports: [
     TenantSaveIdentifierDatabaseModule,
+    SharedModulesDatabase,
     TypeOrmModule.forRoot({
       name: 'shared',
       type: 'postgres',

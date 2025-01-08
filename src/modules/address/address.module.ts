@@ -9,7 +9,7 @@ import { AddressRepositoryProvider } from '../users/user-provider';
 
 @Module({
   controllers: [AddressController],
-  providers: [AddressService, AddressRepository, AddressRepositoryProvider],
+  providers: [AddressService, AddressRepository],
   exports: [AddressService, AddressRepository],
 })
 export class AddressModule {}

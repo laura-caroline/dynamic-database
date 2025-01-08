@@ -1,4 +1,4 @@
-import { Provider } from '@nestjs/common';
+import { Global, Module, Provider } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { UserRepository } from './repository/user.repository';
 import { getDataSourceToken } from '@nestjs/typeorm';
@@ -20,3 +20,12 @@ export const AddressRepositoryProvider: Provider = {
   },
   inject: [getDataSourceToken('shared')],
 };
+
+@Global()
+@Module({
+  controllers: [],
+  imports: [],
+  providers: [UserRepositoryProvider, AddressRepositoryProvider],
+  exports: [UserRepositoryProvider, AddressRepositoryProvider],
+})
+export class SharedModulesDatabase {}

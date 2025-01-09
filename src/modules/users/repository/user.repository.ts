@@ -1,11 +1,48 @@
 import { Injectable } from '@nestjs/common';
+import { join } from 'path';
 import { UserEntity } from 'src/database/entities/users';
 import { DataSource, Repository } from 'typeorm';
 
 @Injectable()
 export class UserRepository extends Repository<UserEntity> {
   constructor(dataSource: DataSource) {
-    super(UserEntity, dataSource.createEntityManager());
+    super(
+      UserEntity,
+      dataSource
+        .setOptions({
+          name: 'shared',
+          type: 'postgres',
+          host: 'localhost',
+          port: 5432,
+          username: 'postgres',
+          password: 'postgres',
+          database: 'white',
+          entities: [
+            join(
+              __dirname,
+              '..',
+              '..',
+              '..',
+              'database',
+              'entities',
+              '*.{ts,js}',
+            ),
+          ],
+          migrations: [
+            join(
+              __dirname,
+              '..',
+              '..',
+              '..',
+              'database',
+              'migration',
+              '*.{ts,js}',
+            ),
+          ],
+          synchronize: false,
+        })
+        .createEntityManager(),
+    );
   }
 
   // Atualize o método defaultSelect

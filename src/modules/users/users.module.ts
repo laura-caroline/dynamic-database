@@ -1,17 +1,8 @@
-import { Module, Provider } from '@nestjs/common';
-import { UsersService } from './users.service';
-import { UsersController } from './users.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from 'src/database/entities/users';
-import { AddressEntity } from 'src/database/entities/address.entity';
-import { UserRepository } from './repository/user.repository';
-import { DataSource } from 'typeorm';
-import {
-  AddressRepositoryProvider,
-  UserRepositoryProvider,
-} from './user-provider';
-import { AddressRepository } from '../address/repository/address.repository';
+import { Module } from '@nestjs/common';
 import { AddressModule } from '../address/address.module';
+import { UserRepository } from './repository/user.repository';
+import { UsersController } from './users.controller';
+import { UsersService } from './users.service';
 
 @Module({
   imports: [AddressModule],
